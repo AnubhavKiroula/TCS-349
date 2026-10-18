@@ -109,18 +109,29 @@ Test set (final check):
 
 ## What I found
 
-- [Which model had the best recall / F1, and which was the worst.]
-- [What happened to precision when recall went up. What does it mean for an
-  honest customer?]
-- [Which model was the most fair and which was the least, using FPR ratio.
-  Were older people flagged more?]
-- [Anything that surprised me.]
+- The validation and test scores are almost the same for all 4 models, so the
+  models did not just memorize the validation data.
+- Precision is very low for Logistic Regression, Decision Tree and Random
+  Forest (about 4-5%). This means that out of 100 applications flagged as fraud,
+  only about 4 were actually fraud. Recall is high (71-79%), so the models catch
+  most of the fraud but also flag a lot of honest customers.
+- Random Forest had the best F1 (0.094 on test) and Logistic Regression had the
+  best recall of the first three (0.787). Decision Tree had the lowest scores.
+- Naive Bayes had the highest recall (0.943) but the worst precision (0.016). It
+  flags almost everyone as fraud, so it is not useful in practice even though
+  the recall looks good.
+- For fairness, honest older customers (50 and above) were flagged more than
+  honest younger customers in all 4 models. For example, Logistic Regression
+  flagged about 36% of honest older customers and 16% of honest younger ones.
+- Decision Tree had the best FPR ratio of the first three (0.627). Naive Bayes
+  has the highest ratio (0.794), but that is only because it flags both groups
+  a lot, so I don't think it is really fair.
+- Overall, no model was clearly the best. It depends on what we care about more,
+  catching fraud or not rejecting honest people.
 
 ## Explainability
 
-[Write this part after doing the explainability step: which method I used
-(feature importance / SHAP / etc.), which features mattered most, and whether
-the top features make sense for fraud.]
+- This I'll do , if get an assignment for this .. it isn't covered in the lecture , and the implementation hasn't been taught yet, gotta study this on my own , then will do explainability part...
 
 ## Problems and limitations
 
